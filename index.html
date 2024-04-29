@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About:Blank Opener</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    iframe {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .container {
+        text-align: center;
+        margin-top: 50px;
+    }
+    .slanted-text {
+        font-size: 3em;
+        font-weight: bold;
+        color: #333;
+        transform: skew(-10deg);
+        margin-bottom: 20px;
+    }
+    .small-text {
+        font-size: 0.8em;
+        color: #666;
+        margin-bottom: 20px;
+    }
+    .website-iframe-container {
+        display: none; /* Hide the container initially */
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="slanted-text">about:blank opener</div>
+    <div class="small-text">website to about:blank</div>
+    <input id="websiteUrl" type="text" placeholder="Enter website URL">
+    <button id="embedButton">Embed</button>
+</div>
+
+<script>
+    document.getElementById("embedButton").addEventListener("click", function() {
+        var websiteUrl = document.getElementById("websiteUrl").value.trim();
+        if (websiteUrl !== "") {
+            var aboutBlankWindow = window.open("about:blank", "_blank");
+            if (aboutBlankWindow) {
+                aboutBlankWindow.document.write('<!DOCTYPE html><html><head><title>‎ </title><style>body{margin:0;padding:0;font-family:Arial,sans-serif;}</style></head><body><iframe src="' + websiteUrl + '" style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;"></iframe></body></html>');
+            } else {
+                alert("Pop-up blocker may be preventing the window from opening. Please check your browser settings.");
+            }
+        } else {
+            alert("Please enter a website URL.");
+        }
+    });
+</script>
+
+</body>
+</html>
